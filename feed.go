@@ -5,8 +5,9 @@ import (
 	"github.com/gorilla/feeds"
 	"github.com/hawx/serve"
 
+	"errors"
 	"flag"
-	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"path"
@@ -22,8 +23,9 @@ var (
 const TINYLETTER = "http://tinyletter.com"
 
 type Letters struct {
-	Title string
-	List  []Letter
+	letterPath string
+	Title      string
+	List       []Letter
 }
 
 type Letter struct {
@@ -31,6 +33,25 @@ type Letter struct {
 	Href    string
 	Desc    string
 	PubDate time.Time
+}
+
+func (l Letters) WriteRss(w io.Writer) error {
+	feed := &feeds.Feed{
+		Title:   l.Title,
+		Link:    &feeds.Link{Href: TINYLETTER + l.letterPath},
+		Created: time.Now(),
+	}
+
+	for _, letter := range l.List {
+		feed.Items = append(feed.Items, &feeds.Item{
+			Title:       letter.Title,
+			Link:        &feeds.Link{Href: letter.Href},
+			Description: letter.Desc,
+			Created:     letter.PubDate,
+		})
+	}
+
+	return feed.WriteRss(w)
 }
 
 func get(letterPath string) (Letters, error) {
@@ -41,6 +62,9 @@ func get(letterPath string) (Letters, error) {
 	if err != nil {
 		return Letters{}, err
 	}
+	if resp.StatusCode != 200 {
+		return Letters{}, errors.New(resp.Status)
+	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
@@ -48,6 +72,7 @@ func get(letterPath string) (Letters, error) {
 	}
 
 	letters := Letters{
+		letterPath,
 		strings.TrimSpace(doc.Find("title").Text()),
 		[]Letter{},
 	}
@@ -82,34 +107,17 @@ func main() {
 		letters, err := get(r.URL.Path)
 		if err != nil {
 			log.Println(err)
-			w.WriteHeader(500)
+			w.WriteHeader(400)
 			return
 		}
 
-		feed := &feeds.Feed{
-			Title:   letters.Title,
-			Link:    &feeds.Link{Href: TINYLETTER + r.URL.Path},
-			Created: time.Now(),
-		}
-
-		for _, letter := range letters.List {
-			feed.Items = append(feed.Items, &feeds.Item{
-				Title:       letter.Title,
-				Link:        &feeds.Link{Href: letter.Href},
-				Description: letter.Desc,
-				Created:     letter.PubDate,
-			})
-		}
-
-		rss, err := feed.ToRss()
+		w.Header().Add("Content-Type", "application/rss+xml")
+		err = letters.WriteRss(w)
 		if err != nil {
 			log.Println(err)
 			w.WriteHeader(500)
 			return
 		}
-
-		w.Header().Add("Content-Type", "application/rss+xml")
-		fmt.Fprintf(w, rss)
 	})
 
 	serve.Serve(*port, *socket, http.DefaultServeMux)
