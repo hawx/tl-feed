@@ -5,7 +5,7 @@ Simple go app to convert tinyletters into rss feeds. Run then hit
 `http://tinyletter.com/yourfavouriteletter`.
 
 ``` bash
-$ go get github.com/hawx/tl-feed
+$ go get hawx.me/code/tl-feed
 $ tl-feed
 Running on port :8080
 ...
