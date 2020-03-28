@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backlight</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="width=device-width" name="viewport">
+    <meta content="IE=7, IE=9" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" type="text/css" href="//app.tinyletter.com/css/message.css">
+    <link rel="icon" href="/site/favicon.ico" type="image/x-icon">
+    <!--[if IE]>
+    <style type="text/css">
+        .tl-logo a { background:url(http://gallery.mailchimp.com/7f1f3a0cca670414e2146e475/images/tinyletter_sprite.png) no-repeat -148px 0 transparent; }
+    </style>
+    <![endif]-->
+    
+    <meta name="og:url" content="http://tinyletter.com/tcarmody/archive">
+    <meta property="og:title" content="Backlight">
+    <meta property="og:description" content="Backlight collects online writing about technology and culture scattered across the web. The bulk of it will be mine, but I'll try to shine a light on a small number of other essential reads, usually on similar topics. 
+
+So it'll either be things I've written, or things I wish I'd written.">
+    <meta property="og:site_name" content="TinyLetter">
+    <meta property="og:type" content="article">
+    
+    <style type="text/css">
+    /* Customizable Theme Bits */
+    body {
+        background-color: #DDDDDD;
+                    background-image: url(https://static.tinyletter.com/tcarmody/744949ee-5651-4cfc-a422-915b63bb723d.jpg);
+            background-attachment:fixed;
+            }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <div class="container paper-stack">
+        <div id="message-heading">
+            <h1 class="subject">Backlight</h1>
+            <div class="by-line">by <a class="tl_twitter_handle" href="https://twitter.com/tcarmody">Tim Carmody</a></div>
+            <div class="header-arrow-border"></div>
+            <div class="header-arrow"></div>
+        </div>
+        <div class="message-body">
+            <ul class="message-list">
+                <li id="message-6464833" class="message-item">
+                    <span class="message-date">January 27, 2019</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/oops-let-s-make-this-easier"><span>Oops! Let's make this easier</span></a>
+                    <p class="message-snippet">A few people wrote to tell me that it's not clear in my last email how to actually sign up for the new newsletter, or especially, how to become one of the 200 founding members. So here are step-by-ste...</p>
+                </li><li id="message-6464361" class="message-item">
+                    <span class="message-date">January 27, 2019</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/a-new-experiment-and-a-return-to-tech-writing"><span>A new experiment and a return to tech writing</span></a>
+                    <p class="message-snippet">I have an announcement I'm making tomorrow, but you're getting the first look at it. I'm starting a new newsletter (yes, another newsletter) called The Amazon Chronicles <https://amazonchronicles.subs...</p>
+                </li><li id="message-6031945" class="message-item">
+                    <span class="message-date">September 21, 2018</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/university-dreams"><span>University dreams</span></a>
+                    <p class="message-snippet">*Hogwarts was the first and best home he had ever known. He and Voldemort and Snape, the abandoned boys, had all found home here.</p>
+                </li><li id="message-4987581" class="message-item">
+                    <span class="message-date">January 13, 2018</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/got-me-working-working-day-and-night"><span>Got me working, working day and night</span></a>
+                    <p class="message-snippet">These have been a tough ten days. Good ones, but difficult. I co-launched a brand-new Newsletter, called Noticing <https://kottke.org/newsletter/>, at Kottke.org. (Here's the first <http://mailchi.mp/...</p>
+                </li><li id="message-4918897" class="message-item">
+                    <span class="message-date">January 03, 2018</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/a-new-career-in-the-same-town"><span>A new career in the same town</span></a>
+                    <p class="message-snippet">Friends, I have news, Two pieces of news in fact!</p>
+                </li><li id="message-4900037" class="message-item">
+                    <span class="message-date">December 30, 2017</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/underwater-like-icebergs-and-submarines"><span>Underwater, like icebergs and submarines</span></a>
+                    <p class="message-snippet">I always knew that most of my work this week was going to be invisible. One of the ways I’ve been spoiled as a writer whose adult life lined up so well with the World Wide Web’s is that I’ve usu...</p>
+                </li><li id="message-4862361" class="message-item">
+                    <span class="message-date">December 23, 2017</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/philly-beards-and-ninja-jedi"><span>Philly beards and ninja jedi</span></a>
+                    <p class="message-snippet">I filled in again for Kottke.org this week, and it looks like I’m going to have a standing Friday gig writing there. I don’t know if there’s a better place to write whatever weird nerdy stuff th...</p>
+                </li><li id="message-4847281" class="message-item">
+                    <span class="message-date">December 19, 2017</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/what-is-news-going-to-do-with-all-this-audio-and-video"><span>What is news going to do with all this audio and video?</span></a>
+                    <p class="message-snippet">These handful of essays I've written over almost five years make an unlikely constellation. The last one I just published this week.</p>
+                </li><li id="message-4834465" class="message-item">
+                    <span class="message-date">December 16, 2017</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/thoughts-on-patronage-plus-black-thought-the-literature-of-smells-and-the-internet-of-pizza"><span>Thoughts on patronage, plus Black Thought, the literature of smells, and the internet of pizza</span></a>
+                    <p class="message-snippet">On Friday, I wrote four newsletter-y posts for Kottke.org, the best blog in the universe. Here's a quick recap of how it all went down, in case you missed it.</p>
+                </li><li id="message-4820537" class="message-item">
+                    <span class="message-date">December 13, 2017</span>
+                    <a class="message-link" href="http://tinyletter.com/tcarmody/letters/holiday-casual-fridays-at-kottke"><span>Holiday Casual Fridays at Kottke</span></a>
+                    <p class="message-snippet">Starting this week (so, December 15), I'll be guest-hosting on Fridays at Kottke.org <http://kottke.org>. I don't have any grand themes or big essays planned, like I've done for past weeklong turns on...</p>
+                </li>            </ul>
+        </div>
+
+        <div class="tl-logo">
+            <a href="http://tinyletter.com" target="_blank">tinyletter</a>
+        </div>
+    </div>
+</div>
+
+<div id="message-pager">
+    <div class="controls">
+        <a class="tl-button subscribe" href="/tcarmody">Subscribe</a>
+         <div class="paging">
+                            <a class="paging-button prev disabled" href="javascript:void(0)">&lt;</a>
+            
+                            <a class="paging-button next" href="/tcarmody/archive?page=2&recs=10&sort=desc&q=">&gt;</a>
+                    </div>
+    </div>
+</div>
+
+</body>
+
+</html>

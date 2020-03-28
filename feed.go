@@ -7,7 +7,6 @@ import (
 
 	"errors"
 	"flag"
-	"io"
 	"log"
 	"net/http"
 	"path"
@@ -15,66 +14,32 @@ import (
 	"time"
 )
 
-var (
-	port   = flag.String("port", "8080", "")
-	socket = flag.String("socket", "", "")
-)
-
-const TINYLETTER = "http://tinyletter.com"
-
-type Letters struct {
-	letterPath string
-	Title      string
-	List       []Letter
+type tinyletterClient struct {
+	http    *http.Client
+	baseURL string
 }
 
-type Letter struct {
-	Title   string
-	Href    string
-	Desc    string
-	PubDate time.Time
-}
-
-func (l Letters) WriteRss(w io.Writer) error {
-	feed := &feeds.Feed{
-		Title:   l.Title,
-		Link:    &feeds.Link{Href: TINYLETTER + l.letterPath},
-		Created: time.Now(),
-	}
-
-	for _, letter := range l.List {
-		feed.Items = append(feed.Items, &feeds.Item{
-			Title:       letter.Title,
-			Link:        &feeds.Link{Href: letter.Href},
-			Description: letter.Desc,
-			Created:     letter.PubDate,
-		})
-	}
-
-	return feed.WriteRss(w)
-}
-
-func get(letterPath string) (Letters, error) {
-	url := TINYLETTER + path.Join(letterPath, "archive")
+func (c *tinyletterClient) get(letterPath string) (*feeds.Feed, error) {
+	url := c.baseURL + path.Join(letterPath, "archive")
 	log.Println("GET", url)
 
-	resp, err := http.Get(url)
+	resp, err := c.http.Get(url)
 	if err != nil {
-		return Letters{}, err
+		return nil, err
 	}
 	if resp.StatusCode != 200 {
-		return Letters{}, errors.New(resp.Status)
+		return nil, errors.New(resp.Status)
 	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
-		return Letters{}, err
+		return nil, err
 	}
 
-	letters := Letters{
-		letterPath,
-		strings.TrimSpace(doc.Find("title").Text()),
-		[]Letter{},
+	feed := &feeds.Feed{
+		Title:   strings.TrimSpace(doc.Find("title").Text()),
+		Link:    &feeds.Link{Href: c.baseURL + letterPath},
+		Created: time.Now(),
 	}
 
 	doc.Find(".message-list li").Each(func(i int, s *goquery.Selection) {
@@ -89,29 +54,34 @@ func get(letterPath string) (Letters, error) {
 			date = time.Now()
 		}
 
-		letters.List = append(letters.List, Letter{
-			strings.TrimSpace(title),
-			link,
-			strings.TrimSpace(desc),
-			date,
+		feed.Items = append(feed.Items, &feeds.Item{
+			Title:       strings.TrimSpace(title),
+			Link:        &feeds.Link{Href: link},
+			Description: strings.TrimSpace(desc),
+			Created:     date,
 		})
 	})
 
-	return letters, nil
+	return feed, nil
 }
 
 func main() {
+	var (
+		port   = flag.String("port", "8080", "")
+		socket = flag.String("socket", "", "")
+	)
 	flag.Parse()
 
-	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, TINYLETTER+r.URL.Path, 301)
-	})
+	client := &tinyletterClient{
+		baseURL: "http://tinyletter.com",
+		http:    http.DefaultClient,
+	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		letters, err := get(r.URL.Path)
+		letters, err := client.get(r.URL.Path)
 		if err != nil {
 			log.Println(err)
-			w.WriteHeader(400)
+			http.Error(w, "", http.StatusBadGateway)
 			return
 		}
 
@@ -119,9 +89,13 @@ func main() {
 		err = letters.WriteRss(w)
 		if err != nil {
 			log.Println(err)
-			w.WriteHeader(500)
+			http.Error(w, "", http.StatusInternalServerError)
 			return
 		}
+	})
+
+	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "http://tinyletter.com/favicon.ico", 301)
 	})
 
 	serve.Serve(*port, *socket, http.DefaultServeMux)

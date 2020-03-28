@@ -9,5 +9,7 @@ github.com/gorilla/feeds v1.1.0/go.mod h1:Nk0jZrvPFZX1OBe5NPiddPw7CfwF6Q9eqzaBba
 golang.org/x/net v0.0.0-20180218175443-cbe0f9307d01/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20181114220301-adae6a3d119a h1:gOpx8G595UYyvj8UK4+OFyY4rx037g3fmfhe5SasG3U=
 golang.org/x/net v0.0.0-20181114220301-adae6a3d119a/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+hawx.me/code/assert v0.0.0-20150803185601-4570da094475 h1:Bj8b81kYHaxzLu9dRxyRKrmZTujQzD5ccWkUTHUdpBg=
+hawx.me/code/assert v0.0.0-20150803185601-4570da094475/go.mod h1:T9mMMImeViZqsnBMFwbc0TbTlDb+bwAPF0PUJpjam6s=
 hawx.me/code/serve v0.0.0-20190207181551-eb94630184cf h1:8rHeLEfK+pyTPkL/kH5THN2HgtfbuMeHnnneMFijo3Y=
 hawx.me/code/serve v0.0.0-20190207181551-eb94630184cf/go.mod h1:3Nhu3uATqipwDDYpeaS/SEIBvC2vbO0hdqYmHffpwRU=
