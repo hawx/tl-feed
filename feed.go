@@ -103,6 +103,10 @@ func get(letterPath string) (Letters, error) {
 func main() {
 	flag.Parse()
 
+	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, TINYLETTER+r.URL.Path, 301)
+	})
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		letters, err := get(r.URL.Path)
 		if err != nil {
