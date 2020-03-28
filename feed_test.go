@@ -29,6 +29,7 @@ func TestTinyletterClientGet(t *testing.T) {
 		item := feed.Items[2]
 		assert.Equal("University dreams", item.Title)
 		assert.Equal("*Hogwarts was the first and best home he had ever known. He and Voldemort and Snape, the abandoned boys, had all found home here.", item.Description)
+		assert.Equal("http://tinyletter.com/tcarmody/letters/university-dreams", item.Link.Href)
 		assert.Equal(time.Date(2018, time.September, 21, 0, 0, 0, 0, time.UTC), item.Created)
 	}
 }
